@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShiftLogger.Data;
+using ShiftLogger.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<ShiftDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<IShiftService, ShiftService>();
 
 var app = builder.Build();
 
